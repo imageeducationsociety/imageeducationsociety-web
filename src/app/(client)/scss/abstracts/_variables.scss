@@ -1,0 +1,113 @@
+@use "./functions" as *;
+
+//*----> variables
+
+//*----> fonts
+
+$roboto: var(--font-roboto), sans-serif;
+$domine: var(--font-domine), serif;
+
+@mixin cookie {
+  font-family: $cookie;
+  font-weight: 100;
+}
+
+//*----> colors
+
+$c_light: #e0e0e0;
+$c_dark: #111111;
+$c_primary: #2c2cff;
+$c_secondary: #c93900;
+
+$b-radius: rem(20);
+
+//*----> easing
+
+$e_quart: cubic-bezier(0.76, 0, 0.24, 1);
+
+//*----> background animation
+
+@mixin bg_animation {
+  background-color: $c_dark;
+  background: linear-gradient(90deg, $c_primary, $c_secondary, $c_primary);
+  background-size: 200%;
+  animation: skeleton 1s infinite linear;
+
+  @keyframes skeleton {
+    from {
+      background-position: -100% 0;
+    }
+    to {
+      background-position: 100% 0;
+    }
+  }
+}
+
+//*----> heights
+
+$header_height_mobile: 60px;
+$header_height_desktop: 100px;
+
+@mixin header_height {
+  & {
+    height: $header_height_mobile;
+  }
+
+  @include breakpoint(medium) {
+    height: $header_height_desktop;
+  }
+}
+
+//*----> full_width
+
+@mixin full_width {
+  width: 100vw;
+  max-width: 100%;
+  padding-inline: 4vw;
+
+  @include breakpoint(medium) {
+    padding-inline: 8vw;
+  }
+
+  @include breakpoint(large) {
+    padding-inline: 12vw;
+  }
+
+  @include breakpoint(xlarge) {
+    padding-inline: 12vw;
+  }
+
+  @include breakpoint(xxlarge) {
+    padding-inline: 20vw;
+  }
+}
+
+@mixin full_padding_inline {
+  padding-inline: 4vw;
+
+  @include breakpoint(medium) {
+    padding-inline: 8vw;
+  }
+
+  @include breakpoint(large) {
+    padding-inline: 13vw;
+  }
+
+  @include breakpoint(xxlarge) {
+    padding-inline: 20vw;
+  }
+}
+
+/*
+//*---------->> Tablet
+
+@media screen and (min-width: 820px){
+
+}
+
+//*---------->> desktop
+
+@media screen and (min-width: 1025px){
+
+}
+ */

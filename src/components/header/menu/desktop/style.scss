@@ -1,0 +1,29 @@
+@use "@/app/(client)/scss/abstracts" as *;
+
+#DesktopNav {
+  display: flex;
+  gap: rem(12);
+
+  @include breakpoint(large) {
+    gap: rem(16);
+  }
+
+  @include breakpoint(xlarge) {
+    gap: rem(24);
+  }
+
+  button {
+    @include breakpoint(large) {
+      font-size: rem(16);
+      transition: color 0.25s ease-in-out;
+
+      &:hover {
+        color: $c_primary;
+      }
+    }
+
+    @include breakpoint(xlarge) {
+      font-size: rem(20);
+    }
+  }
+}

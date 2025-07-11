@@ -1,0 +1,29 @@
+@use "@/app/(client)/scss/abstracts" as *;
+
+#Header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: $c_light;
+  @include full-width;
+  @include header_height;
+
+  .logo_conatiner {
+    width: rem(50);
+
+    @include breakpoint(medium) {
+      width: rem(70);
+    }
+
+    @include breakpoint(large) {
+      width: rem(90);
+    }
+
+    @include breakpoint(xlarge) {
+      width: rem(100);
+    }
+  }
+}

@@ -1,0 +1,61 @@
+@use "@/app/(client)/scss/abstracts" as *;
+
+#Hero {
+  .hero_header {
+    padding-block: rem(50);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: rem(12);
+    @include full-width;
+
+    @include breakpoint(medium) {
+      gap: rem(16);
+    }
+
+    @include breakpoint(xlarge) {
+      padding-top: rem(100);
+      gap: rem(20);
+    }
+
+    h1 {
+      font-family: $domine;
+      font-weight: 500;
+      max-width: 80%;
+
+      @include breakpoint(medium) {
+        font-size: rem(32);
+        max-width: 60%;
+      }
+
+      @include breakpoint(large) {
+        font-size: rem(48);
+        max-width: 70%;
+      }
+
+      @include breakpoint(xlarge) {
+        font-size: rem(64);
+        max-width: 80%;
+      }
+    }
+
+    p {
+      max-width: 40ch;
+
+      @include breakpoint(medium) {
+        font-size: rem(16);
+        max-width: 60ch;
+      }
+
+      @include breakpoint(large) {
+        font-size: rem(20);
+      }
+
+      @include breakpoint(xlarge) {
+        font-size: rem(24);
+        max-width: 70ch;
+      }
+    }
+  }
+}
