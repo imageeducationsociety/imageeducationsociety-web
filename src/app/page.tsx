@@ -5,90 +5,100 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+        <div className={styles.maintenanceContent}>
+          <div className={styles.logoSection}>
+            <h1 className={styles.title}>Image Education Society</h1>
+            <p className={styles.subtitle}>
+              Empowering Women Through Skills Since 2008
+            </p>
+          </div>
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+          <div className={styles.maintenanceMessage}>
+            <div className={styles.maintenanceIcon}>
+              <svg
+                width="64"
+                height="64"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 2L2 7L12 12L22 7L12 2Z"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M2 17L12 22L22 17"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M2 12L12 17L22 12"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+
+            <h2 className={styles.maintenanceTitle}>
+              Website Under Maintenance
+            </h2>
+            <p className={styles.maintenanceText}>
+              We're currently updating our website to better serve our community
+              and showcase our mission of empowering women through skill-based
+              training and livelihood generation.
+            </p>
+
+            <div className={styles.expectedTime}>
+              <p>Expected completion: Soon</p>
+            </div>
+          </div>
+
+          <div className={styles.missionSection}>
+            <h3>Our Mission</h3>
+            <p>
+              To empower underprivileged women through various skills, enabling
+              them to become financially independent and socially confident.
+            </p>
+          </div>
+
+          <div className={styles.contactSection}>
+            <h3>Contact Us</h3>
+            <p>For immediate assistance or inquiries about our programs:</p>
+            <div className={styles.contactInfo}>
+              <p>
+                <strong>Email:</strong> imageeducationsociety.org@gmail.com
+              </p>
+            </div>
+          </div>
+
+          <div className={styles.programsSection}>
+            <h3>Our Core Programs</h3>
+            <ul className={styles.programsList}>
+              <li>Tailoring & Apparel Manufacturing</li>
+              <li>Beauty & Wellness Sector</li>
+              <li>Hospitality & Tourism</li>
+              <li>Digital Literacy</li>
+              <li>Sustainable Product Development</li>
+              <li>Market Linkage & Employment Facilitation</li>
+              <li>Child Education Support</li>
+            </ul>
+          </div>
         </div>
       </main>
+
       <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+        <p>&copy; 2024 Image Education Society. All rights reserved.</p>
+        <p>
+          Founded by Simran Kaur Munde - Textile Engineer with 25+ years of
+          experience
+        </p>
       </footer>
     </div>
   );
