@@ -1,5 +1,10 @@
 import type { StructureResolver } from "sanity/structure";
-import { CogIcon, HomeIcon, MasterDetailIcon } from "@sanity/icons";
+import {
+  CogIcon,
+  HomeIcon,
+  MasterDetailIcon,
+  DocumentIcon,
+} from "@sanity/icons";
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
 export const structure: StructureResolver = (S) =>
   S.list()
@@ -10,6 +15,11 @@ export const structure: StructureResolver = (S) =>
         .title("Hero")
         .icon(MasterDetailIcon)
         .child(S.document().schemaType("hero").documentId("hero")),
+
+      S.listItem()
+        .title("About")
+        .icon(DocumentIcon)
+        .child(S.document().schemaType("about").documentId("about")),
 
       // Divider for visual grouping
       S.divider(),
@@ -31,6 +41,7 @@ export const structure: StructureResolver = (S) =>
 
       // List all other document types except those we've already handled
       ...S.documentTypeListItems().filter(
-        (item) => item.getId() && !["brand", "hero"].includes(item.getId()!)
+        (item) =>
+          item.getId() && !["brand", "hero", "about"].includes(item.getId()!)
       ),
     ]);

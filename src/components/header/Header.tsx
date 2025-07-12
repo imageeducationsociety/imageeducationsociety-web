@@ -10,14 +10,19 @@ const Header = async () => {
   const brand: BRAND_QUERYResult | null =
     await client.fetch<BRAND_QUERYResult>(BRAND_QUERY);
 
+  if (!brand) return null;
+
   return (
     <header id="Header">
       <div className="logo_conatiner">
-        <Button type="scroll_link" id="Hero">
+        <Button type="scroll_link" scrollToId="Hero">
           {brand && <Logo brand={brand} />}
         </Button>
       </div>
       <Nav />
+      <div className="gradient-blur">
+        <div />
+      </div>
     </header>
   );
 };

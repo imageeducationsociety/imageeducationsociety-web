@@ -52,7 +52,7 @@ export const useLenisScrollTo = () => {
               : easingMap.easeInOut;
 
         lenis.scrollTo(targetY, {
-          duration: options?.duration ?? 1.2,
+          duration: options?.duration ?? 0.5,
           easing,
         });
       }

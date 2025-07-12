@@ -13,6 +13,64 @@
  */
 
 // Source: schema.json
+export type About = {
+  _id: string;
+  _type: "about";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  subtitle?: string;
+  description?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }>;
+  matrix?: Array<{
+    title?: string;
+    description?: string;
+    _key: string;
+  }>;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+};
+
 export type Hero = {
   _id: string;
   _type: "hero";
@@ -21,6 +79,23 @@ export type Hero = {
   _rev: string;
   title?: string;
   subtitle?: string;
+  gallery?: Array<{
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    title?: string;
+    subtitle?: string;
+    _key: string;
+  }>;
 };
 
 export type Brand = {
@@ -59,6 +134,38 @@ export type Brand = {
   };
   keywords?: Array<string>;
 };
+
+export type BlockContent = Array<{
+  children?: Array<{
+    marks?: Array<string>;
+    text?: string;
+    _type: "span";
+    _key: string;
+  }>;
+  style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+  listItem?: "bullet";
+  markDefs?: Array<{
+    href?: string;
+    _type: "link";
+    _key: string;
+  }>;
+  level?: number;
+  _type: "block";
+  _key: string;
+} | {
+  asset?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+  };
+  media?: unknown;
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  alt?: string;
+  _type: "image";
+  _key: string;
+}>;
 
 export type Icon = {
   _type: "icon";
@@ -183,7 +290,7 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = Hero | Brand | Icon | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = About | Hero | Brand | BlockContent | Icon | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: BRAND_QUERY
@@ -227,6 +334,82 @@ export type HERO_QUERYResult = {
   title: string | null;
   subtitle: string | null;
 } | null;
+// Variable: HERO_GALLERY_QUERY
+// Query: *[_type == "hero"][0] {        _id,        _createdAt,        gallery[]{            "image": image{                asset->{                    _id,                    url,                    metadata{                        lqip,                    },                },                hotspot,                crop,            },            title,            subtitle,        }    }
+export type HERO_GALLERY_QUERYResult = {
+  _id: string;
+  _createdAt: string;
+  gallery: Array<{
+    image: {
+      asset: {
+        _id: string;
+        url: string | null;
+        metadata: {
+          lqip: string | null;
+        } | null;
+      } | null;
+      hotspot: SanityImageHotspot | null;
+      crop: SanityImageCrop | null;
+    } | null;
+    title: string | null;
+    subtitle: string | null;
+  }> | null;
+} | null;
+// Variable: ABOUT_QUERY
+// Query: *[_type == "about"][0] {        _id,        _createdAt,        title,        subtitle,        description,        matrix,        "image": image{            asset->{                _id,                url,                metadata{                    lqip,                },            },            hotspot,            crop,        },    }
+export type ABOUT_QUERYResult = {
+  _id: string;
+  _createdAt: string;
+  title: string | null;
+  subtitle: string | null;
+  description: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }> | null;
+  matrix: Array<{
+    title?: string;
+    description?: string;
+    _key: string;
+  }> | null;
+  image: {
+    asset: {
+      _id: string;
+      url: string | null;
+      metadata: {
+        lqip: string | null;
+      } | null;
+    } | null;
+    hotspot: SanityImageHotspot | null;
+    crop: SanityImageCrop | null;
+  } | null;
+} | null;
 
 // Query TypeMap
 import "@sanity/client";
@@ -234,5 +417,7 @@ declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type == \"brand\"][0] {\n        _id,\n        _createdAt,\n        title,\n        description,\n        \"logo\": logo{\n            \"logo_mobile\": logo_mobile{\n            asset->{\n                _id,\n                url,\n                metadata{\n                    lqip,\n                },\n            },\n                hotspot,\n                crop,\n            },\n            \"logo_desktop\": logo_desktop{\n                asset->{\n                    _id,\n                    url,\n                    metadata{\n                    lqip,\n                    }\n                },\n                hotspot,\n                crop,\n            },\n        },\n        keywords,\n    }": BRAND_QUERYResult;
     "*[_type == \"hero\"][0] {\n        _id,\n        _createdAt,\n        title,\n        subtitle,\n    }": HERO_QUERYResult;
+    "*[_type == \"hero\"][0] {\n        _id,\n        _createdAt,\n        gallery[]{\n            \"image\": image{\n                asset->{\n                    _id,\n                    url,\n                    metadata{\n                        lqip,\n                    },\n                },\n                hotspot,\n                crop,\n            },\n            title,\n            subtitle,\n        }\n    }": HERO_GALLERY_QUERYResult;
+    "*[_type == \"about\"][0] {\n        _id,\n        _createdAt,\n        title,\n        subtitle,\n        description,\n        matrix,\n        \"image\": image{\n            asset->{\n                _id,\n                url,\n                metadata{\n                    lqip,\n                },\n            },\n            hotspot,\n            crop,\n        },\n    }": ABOUT_QUERYResult;
   }
 }

@@ -1,8 +1,14 @@
 @use "@/app/(client)/scss/abstracts" as *;
 
 #Hero {
+  padding-block: rem(40);
+
+  @include breakpoint(xlarge) {
+    padding-block: rem(80);
+  }
+
   .hero_header {
-    padding-block: rem(50);
+    padding-bottom: rem(40);
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -14,8 +20,11 @@
       gap: rem(16);
     }
 
+    @include breakpoint(large) {
+      padding-bottom: rem(0);
+    }
+
     @include breakpoint(xlarge) {
-      padding-top: rem(100);
       gap: rem(20);
     }
 

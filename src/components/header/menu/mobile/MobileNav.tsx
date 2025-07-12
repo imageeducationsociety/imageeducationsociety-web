@@ -58,6 +58,7 @@ const MobileNav = () => {
                     key={item.title}
                     onClick={() => {
                       setIsOpen(false);
+                      lenis?.start();
                       scrollTo(item.href.id, {
                         duration: item.href.duration,
                         easing: "easeInOut",

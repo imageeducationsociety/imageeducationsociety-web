@@ -20,6 +20,7 @@ const Logo = ({ brand }: { brand: BRAND_QUERYResult }) => {
               alt={brand.title || "Logo"}
               className="logo"
               mode="contain"
+              sizes="card"
             />
           )
         : brand &&
@@ -30,6 +31,7 @@ const Logo = ({ brand }: { brand: BRAND_QUERYResult }) => {
               alt={brand.title || "Logo"}
               className="logo"
               mode="contain"
+              sizes="card"
             />
           )}
     </>

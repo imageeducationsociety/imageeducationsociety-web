@@ -8,12 +8,14 @@ const Button = ({
   children,
   onClick,
   type = "button",
-  id,
+  scrollToId,
+  offset = -100,
 }: {
   children: ReactNode;
   onClick?: () => void;
   type?: "button" | "submit" | "reset" | "scroll_button" | "scroll_link";
-  id?: string;
+  scrollToId?: string;
+  offset?: number;
 }) => {
   const scrollTo = useLenisScrollTo();
   if (type === "scroll_button") {
@@ -22,10 +24,10 @@ const Button = ({
         id="Button"
         className="scroll_button"
         onClick={() => {
-          scrollTo(id || "", {
-            duration: 1000,
+          scrollTo(scrollToId || "", {
+            duration: 0.5,
             easing: "easeInOut",
-            offset: -60,
+            offset: offset,
           });
         }}
       >
@@ -39,10 +41,10 @@ const Button = ({
         id="Button"
         className="scroll_link"
         onClick={() => {
-          scrollTo(id || "", {
-            duration: 1000,
+          scrollTo(scrollToId || "", {
+            duration: 0.5,
             easing: "easeInOut",
-            offset: -60,
+            offset: offset,
           });
         }}
       >

@@ -3,6 +3,8 @@
 #DesktopNav {
   display: flex;
   gap: rem(12);
+  position: relative;
+  z-index: 101;
 
   @include breakpoint(large) {
     gap: rem(16);
@@ -16,9 +18,10 @@
     @include breakpoint(large) {
       font-size: rem(16);
       transition: color 0.25s ease-in-out;
+      color: $c_primary;
 
       &:hover {
-        color: $c_primary;
+        color: $c_secondary;
       }
     }
 

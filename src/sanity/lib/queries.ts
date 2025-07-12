@@ -42,3 +42,47 @@ export const HERO_QUERY = defineQuery(
         subtitle,
     }`
 );
+
+export const HERO_GALLERY_QUERY = defineQuery(
+  `*[_type == "hero"][0] {
+        _id,
+        _createdAt,
+        gallery[]{
+            "image": image{
+                asset->{
+                    _id,
+                    url,
+                    metadata{
+                        lqip,
+                    },
+                },
+                hotspot,
+                crop,
+            },
+            title,
+            subtitle,
+        }
+    }`
+);
+
+export const ABOUT_QUERY = defineQuery(
+  `*[_type == "about"][0] {
+        _id,
+        _createdAt,
+        title,
+        subtitle,
+        description,
+        matrix,
+        "image": image{
+            asset->{
+                _id,
+                url,
+                metadata{
+                    lqip,
+                },
+            },
+            hotspot,
+            crop,
+        },
+    }`
+);

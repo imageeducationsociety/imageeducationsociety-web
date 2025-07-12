@@ -7,14 +7,9 @@
 $roboto: var(--font-roboto), sans-serif;
 $domine: var(--font-domine), serif;
 
-@mixin cookie {
-  font-family: $cookie;
-  font-weight: 100;
-}
-
 //*----> colors
 
-$c_light: #e0e0e0;
+$c_light: #f7f7f7;
 $c_dark: #111111;
 $c_primary: #2c2cff;
 $c_secondary: #c93900;
@@ -69,16 +64,28 @@ $header_height_desktop: 100px;
     padding-inline: 8vw;
   }
 
-  @include breakpoint(large) {
-    padding-inline: 12vw;
-  }
-
   @include breakpoint(xlarge) {
     padding-inline: 12vw;
   }
 
   @include breakpoint(xxlarge) {
     padding-inline: 20vw;
+  }
+}
+
+@mixin left_padding {
+  padding-left: 4vw;
+
+  @include breakpoint(medium) {
+    padding-left: 8vw;
+  }
+
+  @include breakpoint(xlarge) {
+    padding-left: 12vw;
+  }
+
+  @include breakpoint(xxlarge) {
+    padding-left: 20vw;
   }
 }
 

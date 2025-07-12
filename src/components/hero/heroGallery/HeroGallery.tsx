@@ -5,13 +5,19 @@ import MobileHeroGallery from "./mobile/MobileHeroGallery";
 import DesktopHeroGallery from "./desktop/DesktopHeroGallery";
 
 const HeroGallery = () => {
-  const { isMounted, isMobile } = useResponsive();
+  const { isMounted, isTablet, isMobile } = useResponsive();
 
   if (!isMounted) return null;
 
   return (
     <div id="HeroGallery">
-      {isMobile ? <MobileHeroGallery /> : <DesktopHeroGallery />}
+      {isMobile ? (
+        <MobileHeroGallery />
+      ) : isTablet ? (
+        <MobileHeroGallery />
+      ) : (
+        <DesktopHeroGallery />
+      )}
     </div>
   );
 };
