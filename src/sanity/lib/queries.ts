@@ -86,3 +86,27 @@ export const ABOUT_QUERY = defineQuery(
         },
     }`
 );
+
+export const DIFFERENCE_QUERY = defineQuery(
+  `*[_type == "difference"][0] {
+        _id,
+        _createdAt,
+        title,
+        subtitle,
+        "points": points[]{
+            title,
+            description,
+            "icon": icon{
+                asset->{
+                    _id,
+                    url,
+                    metadata{
+                        lqip,
+                    },
+                },
+                hotspot,
+                crop,
+            },
+        },
+    }`
+);

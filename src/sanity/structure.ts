@@ -4,6 +4,7 @@ import {
   HomeIcon,
   MasterDetailIcon,
   DocumentIcon,
+  BulbOutlineIcon,
 } from "@sanity/icons";
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
 export const structure: StructureResolver = (S) =>
@@ -20,6 +21,11 @@ export const structure: StructureResolver = (S) =>
         .title("About")
         .icon(DocumentIcon)
         .child(S.document().schemaType("about").documentId("about")),
+
+      S.listItem()
+        .title("Difference")
+        .icon(BulbOutlineIcon)
+        .child(S.document().schemaType("difference").documentId("difference")),
 
       // Divider for visual grouping
       S.divider(),
@@ -42,6 +48,7 @@ export const structure: StructureResolver = (S) =>
       // List all other document types except those we've already handled
       ...S.documentTypeListItems().filter(
         (item) =>
-          item.getId() && !["brand", "hero", "about"].includes(item.getId()!)
+          item.getId() &&
+          !["brand", "hero", "about", "difference"].includes(item.getId()!)
       ),
     ]);

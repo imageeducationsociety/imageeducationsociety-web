@@ -13,6 +13,33 @@
  */
 
 // Source: schema.json
+export type Difference = {
+  _id: string;
+  _type: "difference";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  subtitle?: string;
+  points?: Array<{
+    title?: string;
+    description?: string;
+    icon?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    _key: string;
+  }>;
+};
+
 export type About = {
   _id: string;
   _type: "about";
@@ -290,7 +317,7 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = About | Hero | Brand | BlockContent | Icon | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = Difference | About | Hero | Brand | BlockContent | Icon | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: BRAND_QUERY
@@ -410,6 +437,29 @@ export type ABOUT_QUERYResult = {
     crop: SanityImageCrop | null;
   } | null;
 } | null;
+// Variable: DIFFERENCE_QUERY
+// Query: *[_type == "difference"][0] {        _id,        _createdAt,        title,        subtitle,        "points": points[]{            title,            description,            "icon": icon{                asset->{                    _id,                    url,                    metadata{                        lqip,                    },                },                hotspot,                crop,            },        },    }
+export type DIFFERENCE_QUERYResult = {
+  _id: string;
+  _createdAt: string;
+  title: string | null;
+  subtitle: string | null;
+  points: Array<{
+    title: string | null;
+    description: string | null;
+    icon: {
+      asset: {
+        _id: string;
+        url: string | null;
+        metadata: {
+          lqip: string | null;
+        } | null;
+      } | null;
+      hotspot: SanityImageHotspot | null;
+      crop: SanityImageCrop | null;
+    } | null;
+  }> | null;
+} | null;
 
 // Query TypeMap
 import "@sanity/client";
@@ -419,5 +469,6 @@ declare module "@sanity/client" {
     "*[_type == \"hero\"][0] {\n        _id,\n        _createdAt,\n        title,\n        subtitle,\n    }": HERO_QUERYResult;
     "*[_type == \"hero\"][0] {\n        _id,\n        _createdAt,\n        gallery[]{\n            \"image\": image{\n                asset->{\n                    _id,\n                    url,\n                    metadata{\n                        lqip,\n                    },\n                },\n                hotspot,\n                crop,\n            },\n            title,\n            subtitle,\n        }\n    }": HERO_GALLERY_QUERYResult;
     "*[_type == \"about\"][0] {\n        _id,\n        _createdAt,\n        title,\n        subtitle,\n        description,\n        matrix,\n        \"image\": image{\n            asset->{\n                _id,\n                url,\n                metadata{\n                    lqip,\n                },\n            },\n            hotspot,\n            crop,\n        },\n    }": ABOUT_QUERYResult;
+    "*[_type == \"difference\"][0] {\n        _id,\n        _createdAt,\n        title,\n        subtitle,\n        \"points\": points[]{\n            title,\n            description,\n            \"icon\": icon{\n                asset->{\n                    _id,\n                    url,\n                    metadata{\n                        lqip,\n                    },\n                },\n                hotspot,\n                crop,\n            },\n        },\n    }": DIFFERENCE_QUERYResult;
   }
 }
