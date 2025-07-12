@@ -21,6 +21,7 @@ export default defineConfig({
   dataset,
   title: "Image Education Society Studio",
   // Add and edit the content schema in the './sanity/schemaTypes' folder
+  apiVersion: apiVersion,
   schema,
   plugins: [
     structureTool({ structure }),
