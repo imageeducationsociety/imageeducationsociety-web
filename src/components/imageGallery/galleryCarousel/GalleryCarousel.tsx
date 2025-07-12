@@ -20,12 +20,14 @@ const GalleryCarousel = ({
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
+    swipe: false,
     responsive: [
       {
         breakpoint: 2040,
         settings: {
           slidesToShow: 4,
           slidesToScroll: 1,
+          swipe: false,
         },
       },
       {
@@ -33,6 +35,7 @@ const GalleryCarousel = ({
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
+          swipe: false,
         },
       },
       {
@@ -40,6 +43,7 @@ const GalleryCarousel = ({
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
+          swipe: true,
         },
       },
       {
@@ -47,6 +51,7 @@ const GalleryCarousel = ({
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          swipe: true,
         },
       },
     ],
