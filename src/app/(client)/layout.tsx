@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { domine, roboto } from "./fonts";
 import "./scss/globals.scss";
-import { client, sanityFetch } from "@/sanity/lib/client";
+import { client } from "@/sanity/lib/client";
 import { BRAND_QUERY } from "@/sanity/lib/queries";
 import Header from "@/components/header/Header";
 import { BRAND_QUERYResult } from "@/sanity/types";
@@ -15,10 +15,7 @@ export const viewport: Viewport = {
 
 async function getBrandData() {
   try {
-    const brand = await sanityFetch({
-      query: BRAND_QUERY,
-      revalidate: 30,
-    });
+    const brand = await client.fetch(BRAND_QUERY);
     return brand;
   } catch (error) {
     console.error("Error fetching brand data:", error);

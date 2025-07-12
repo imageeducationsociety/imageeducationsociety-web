@@ -1,16 +1,26 @@
+"use client";
+
 import "./style.scss";
 import { BRAND_QUERYResult } from "@/sanity/types";
-import { sanityFetch } from "@/sanity/lib/client";
 import { BRAND_QUERY } from "@/sanity/lib/queries";
 import Nav from "./menu/Nav";
 import Logo from "./menu/Logo";
 import Button from "../ui/buttons/Button";
+import { client } from "@/sanity/lib/client";
+import { useEffect, useState } from "react";
 
-const Header = async () => {
-  const brand: BRAND_QUERYResult | null = await sanityFetch({
-    query: BRAND_QUERY,
-    revalidate: 30,
-  });
+const Header = () => {
+  const [brand, setBrand] = useState<BRAND_QUERYResult | null>(null);
+  const fetchBrand = async () => {
+    const result = await client.fetch<BRAND_QUERYResult | null>(BRAND_QUERY);
+    setBrand(result);
+  };
+
+  useEffect(() => {
+    fetchBrand();
+  }, []);
+
+  // console.log(brand);
 
   if (!brand)
     return (
