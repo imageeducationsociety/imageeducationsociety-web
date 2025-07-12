@@ -11,6 +11,8 @@
   @include full-width;
   @include header_height;
 
+  background-color: $c_light;
+
   .logo_conatiner {
     position: relative;
     z-index: 101;
@@ -50,7 +52,7 @@
     height: 100%;
     pointer-events: none;
   }
-
+  /*
   .gradient-blur > div,
   .gradient-blur::before,
   .gradient-blur::after {
@@ -77,5 +79,5 @@
       rgba($c_dark, 0) 87.5%,
       rgba($c_dark, 1) 100%
     );
-  }
+  } */
 }
