@@ -1,7 +1,7 @@
 import { defineQuery } from "next-sanity";
 
 export const BRAND_QUERY = defineQuery(
-  `*[_type == "brand"][0] {
+  `*[_type == "brandDetails"][0] {
         _id,
         _createdAt,
         title,

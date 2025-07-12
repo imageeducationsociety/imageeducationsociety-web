@@ -1,8 +1,8 @@
 import { defineField, defineType } from "sanity";
 
-export const brandType = defineType({
-  name: "brand",
-  title: "Brand",
+export const brandDetailsType = defineType({
+  name: "brandDetails",
+  title: "Brand Details",
   type: "document",
   fields: [
     defineField({

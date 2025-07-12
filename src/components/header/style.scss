@@ -12,19 +12,22 @@
   @include header_height;
 
   .logo_conatiner {
+    position: relative;
     z-index: 101;
-    width: rem(50);
+    width: 50%;
+    height: rem(26);
 
-    @include breakpoint(medium) {
-      width: rem(70);
-    }
+    button {
+      width: 100%;
+      height: 100%;
 
-    @include breakpoint(large) {
-      width: rem(90);
-    }
-
-    @include breakpoint(xlarge) {
-      width: rem(100);
+      img {
+        position: absolute;
+        inset: 0;
+        height: 100%;
+        object-fit: contain;
+        object-position: left top;
+      }
     }
   }
 

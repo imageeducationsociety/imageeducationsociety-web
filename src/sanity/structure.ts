@@ -39,9 +39,13 @@ export const structure: StructureResolver = (S) =>
             .title("Site Settings")
             .items([
               S.listItem()
-                .title("Brand")
+                .title("Brand Details")
                 .icon(HomeIcon)
-                .child(S.document().schemaType("brand").documentId("brand")),
+                .child(
+                  S.document()
+                    .schemaType("brandDetails")
+                    .documentId("brandDetails")
+                ),
             ])
         ),
 
@@ -49,6 +53,8 @@ export const structure: StructureResolver = (S) =>
       ...S.documentTypeListItems().filter(
         (item) =>
           item.getId() &&
-          !["brand", "hero", "about", "difference"].includes(item.getId()!)
+          !["brandDetails", "hero", "about", "difference"].includes(
+            item.getId()!
+          )
       ),
     ]);

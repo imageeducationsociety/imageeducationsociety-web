@@ -726,7 +726,7 @@
     }
   },
   {
-    "name": "brand",
+    "name": "brandDetails",
     "type": "document",
     "attributes": {
       "_id": {
@@ -739,7 +739,7 @@
         "type": "objectAttribute",
         "value": {
           "type": "string",
-          "value": "brand"
+          "value": "brandDetails"
         }
       },
       "_createdAt": {

@@ -125,9 +125,9 @@ export type Hero = {
   }>;
 };
 
-export type Brand = {
+export type BrandDetails = {
   _id: string;
-  _type: "brand";
+  _type: "brandDetails";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
@@ -317,11 +317,11 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = Difference | About | Hero | Brand | BlockContent | Icon | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = Difference | About | Hero | BrandDetails | BlockContent | Icon | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: BRAND_QUERY
-// Query: *[_type == "brand"][0] {        _id,        _createdAt,        title,        description,        "logo": logo{            "logo_mobile": logo_mobile{            asset->{                _id,                url,                metadata{                    lqip,                },            },                hotspot,                crop,            },            "logo_desktop": logo_desktop{                asset->{                    _id,                    url,                    metadata{                    lqip,                    }                },                hotspot,                crop,            },        },        keywords,    }
+// Query: *[_type == "brandDetails"][0] {        _id,        _createdAt,        title,        description,        "logo": logo{            "logo_mobile": logo_mobile{            asset->{                _id,                url,                metadata{                    lqip,                },            },                hotspot,                crop,            },            "logo_desktop": logo_desktop{                asset->{                    _id,                    url,                    metadata{                    lqip,                    }                },                hotspot,                crop,            },        },        keywords,    }
 export type BRAND_QUERYResult = {
   _id: string;
   _createdAt: string;
@@ -465,7 +465,7 @@ export type DIFFERENCE_QUERYResult = {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"brand\"][0] {\n        _id,\n        _createdAt,\n        title,\n        description,\n        \"logo\": logo{\n            \"logo_mobile\": logo_mobile{\n            asset->{\n                _id,\n                url,\n                metadata{\n                    lqip,\n                },\n            },\n                hotspot,\n                crop,\n            },\n            \"logo_desktop\": logo_desktop{\n                asset->{\n                    _id,\n                    url,\n                    metadata{\n                    lqip,\n                    }\n                },\n                hotspot,\n                crop,\n            },\n        },\n        keywords,\n    }": BRAND_QUERYResult;
+    "*[_type == \"brandDetails\"][0] {\n        _id,\n        _createdAt,\n        title,\n        description,\n        \"logo\": logo{\n            \"logo_mobile\": logo_mobile{\n            asset->{\n                _id,\n                url,\n                metadata{\n                    lqip,\n                },\n            },\n                hotspot,\n                crop,\n            },\n            \"logo_desktop\": logo_desktop{\n                asset->{\n                    _id,\n                    url,\n                    metadata{\n                    lqip,\n                    }\n                },\n                hotspot,\n                crop,\n            },\n        },\n        keywords,\n    }": BRAND_QUERYResult;
     "*[_type == \"hero\"][0] {\n        _id,\n        _createdAt,\n        title,\n        subtitle,\n    }": HERO_QUERYResult;
     "*[_type == \"hero\"][0] {\n        _id,\n        _createdAt,\n        gallery[]{\n            \"image\": image{\n                asset->{\n                    _id,\n                    url,\n                    metadata{\n                        lqip,\n                    },\n                },\n                hotspot,\n                crop,\n            },\n            title,\n            subtitle,\n        }\n    }": HERO_GALLERY_QUERYResult;
     "*[_type == \"about\"][0] {\n        _id,\n        _createdAt,\n        title,\n        subtitle,\n        description,\n        matrix,\n        \"image\": image{\n            asset->{\n                _id,\n                url,\n                metadata{\n                    lqip,\n                },\n            },\n            hotspot,\n            crop,\n        },\n    }": ABOUT_QUERYResult;
