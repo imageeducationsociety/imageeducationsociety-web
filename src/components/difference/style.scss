@@ -1,7 +1,7 @@
 @use "@/app/(client)/scss/abstracts" as *;
 
 #Difference {
-  padding-block: rem(40);
+  @include full_padding_block;
   @include full-width;
 
   .difference-container {

@@ -105,6 +105,14 @@ $header_height_desktop: 100px;
   }
 }
 
+@mixin full_padding_block {
+  padding-block: rem(30);
+
+  @include breakpoint(xlarge) {
+    padding-block: rem(60);
+  }
+}
+
 /*
 //*---------->> Tablet
 

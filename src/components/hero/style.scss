@@ -1,11 +1,7 @@
 @use "@/app/(client)/scss/abstracts" as *;
 
 #Hero {
-  padding-block: rem(40);
-
-  @include breakpoint(xlarge) {
-    padding-block: rem(80);
-  }
+  @include full_padding_block;
 
   .hero_header {
     padding-bottom: rem(40);

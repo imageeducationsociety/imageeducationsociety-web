@@ -110,3 +110,22 @@ export const DIFFERENCE_QUERY = defineQuery(
         },
     }`
 );
+
+export const IMAGE_GALLERY_QUERY = defineQuery(
+  `*[_type == "imageGallery"][0] {
+        _id,
+        _createdAt,
+        title,
+        "images": images[]{
+            asset->{
+                _id,
+                url,
+                metadata{
+                    lqip,
+                },
+            },
+            hotspot,
+            crop,
+        }
+    }`
+);

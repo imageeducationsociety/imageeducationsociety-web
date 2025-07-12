@@ -13,6 +13,28 @@
  */
 
 // Source: schema.json
+export type ImageGallery = {
+  _id: string;
+  _type: "imageGallery";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  images?: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }>;
+};
+
 export type Difference = {
   _id: string;
   _type: "difference";
@@ -317,7 +339,7 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = Difference | About | Hero | BrandDetails | BlockContent | Icon | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = ImageGallery | Difference | About | Hero | BrandDetails | BlockContent | Icon | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: BRAND_QUERY
@@ -460,6 +482,24 @@ export type DIFFERENCE_QUERYResult = {
     } | null;
   }> | null;
 } | null;
+// Variable: IMAGE_GALLERY_QUERY
+// Query: *[_type == "imageGallery"][0] {        _id,        _createdAt,        title,        "images": images[]{            asset->{                _id,                url,                metadata{                    lqip,                },            },            hotspot,            crop,        }    }
+export type IMAGE_GALLERY_QUERYResult = {
+  _id: string;
+  _createdAt: string;
+  title: string | null;
+  images: Array<{
+    asset: {
+      _id: string;
+      url: string | null;
+      metadata: {
+        lqip: string | null;
+      } | null;
+    } | null;
+    hotspot: SanityImageHotspot | null;
+    crop: SanityImageCrop | null;
+  }> | null;
+} | null;
 
 // Query TypeMap
 import "@sanity/client";
@@ -470,5 +510,6 @@ declare module "@sanity/client" {
     "*[_type == \"hero\"][0] {\n        _id,\n        _createdAt,\n        gallery[]{\n            \"image\": image{\n                asset->{\n                    _id,\n                    url,\n                    metadata{\n                        lqip,\n                    },\n                },\n                hotspot,\n                crop,\n            },\n            title,\n            subtitle,\n        }\n    }": HERO_GALLERY_QUERYResult;
     "*[_type == \"about\"][0] {\n        _id,\n        _createdAt,\n        title,\n        subtitle,\n        description,\n        matrix,\n        \"image\": image{\n            asset->{\n                _id,\n                url,\n                metadata{\n                    lqip,\n                },\n            },\n            hotspot,\n            crop,\n        },\n    }": ABOUT_QUERYResult;
     "*[_type == \"difference\"][0] {\n        _id,\n        _createdAt,\n        title,\n        subtitle,\n        \"points\": points[]{\n            title,\n            description,\n            \"icon\": icon{\n                asset->{\n                    _id,\n                    url,\n                    metadata{\n                        lqip,\n                    },\n                },\n                hotspot,\n                crop,\n            },\n        },\n    }": DIFFERENCE_QUERYResult;
+    "*[_type == \"imageGallery\"][0] {\n        _id,\n        _createdAt,\n        title,\n        \"images\": images[]{\n            asset->{\n                _id,\n                url,\n                metadata{\n                    lqip,\n                },\n            },\n            hotspot,\n            crop,\n        }\n    }": IMAGE_GALLERY_QUERYResult;
   }
 }

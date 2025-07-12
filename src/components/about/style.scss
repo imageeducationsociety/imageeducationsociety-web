@@ -1,7 +1,7 @@
 @use "@/app/(client)/scss/abstracts" as *;
 
 #About {
-  padding-block: rem(40);
+  @include full_padding_block;
   @include full-width;
 
   @include breakpoint(large) {
@@ -9,10 +9,6 @@
     gap: rem(40);
     padding-inline: 0;
     @include left_padding;
-  }
-
-  @include breakpoint(xlarge) {
-    padding-block: rem(80);
   }
 
   .about-container {
