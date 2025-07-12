@@ -18,7 +18,7 @@
     @include breakpoint(large) {
       font-size: rem(16);
       transition: color 0.25s ease-in-out;
-      color: $c_primary;
+      color: $c_dark;
 
       &:hover {
         color: $c_secondary;
