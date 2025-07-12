@@ -9,7 +9,7 @@ import { BRAND_QUERY } from "@/sanity/lib/queries";
 const Header = async () => {
   const brand: BRAND_QUERYResult | null = await sanityFetch({
     query: BRAND_QUERY,
-    revalidate: 60,
+    revalidate: 30,
     tags: ["brand"],
   });
 
