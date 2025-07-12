@@ -6,11 +6,21 @@ import { sanityFetch } from "@/sanity/lib/client";
 import { BRAND_QUERYResult } from "@/sanity/types";
 import { BRAND_QUERY } from "@/sanity/lib/queries";
 
+async function getBrandData() {
+  try {
+    const brand = await sanityFetch({
+      query: BRAND_QUERY,
+      revalidate: 10,
+    });
+    return brand;
+  } catch (error) {
+    console.error("Error fetching brand data:", error);
+    return null;
+  }
+}
+
 const Header = async () => {
-  const brand: BRAND_QUERYResult | null = await sanityFetch({
-    query: BRAND_QUERY,
-    revalidate: 10,
-  });
+  const brand: BRAND_QUERYResult | null = await getBrandData();
 
   if (!brand)
     return (

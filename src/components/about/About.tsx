@@ -1,13 +1,36 @@
-import { client } from "@/sanity/lib/client";
+import { sanityFetch } from "@/sanity/lib/client";
 import "./style.scss";
 import { ABOUT_QUERY } from "@/sanity/lib/queries";
 import { ABOUT_QUERYResult } from "@/sanity/types";
 import { PortableText } from "@portabletext/react";
 import OptImage from "../commmon/OptImage";
 
+async function getAboutData() {
+  try {
+    const about = await sanityFetch({
+      query: ABOUT_QUERY,
+      revalidate: 10,
+    });
+    return about;
+  } catch (error) {
+    console.error("Error fetching about data:", error);
+    return null;
+  }
+}
+
 const About = async () => {
-  const about = await client.fetch<ABOUT_QUERYResult>(ABOUT_QUERY);
-  if (!about) return null;
+  const about: ABOUT_QUERYResult | null = await getAboutData();
+  if (!about)
+    return (
+      <section id="About">
+        <div className="about-container">
+          <div className="about-content"></div>
+          <div className="about-description"></div>
+          <div className="about-matrix"></div>
+        </div>
+        <div className="about-image"></div>
+      </section>
+    );
 
   return (
     <section id="About">
