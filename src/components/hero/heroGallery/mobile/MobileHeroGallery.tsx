@@ -27,6 +27,13 @@ const MobileHeroGallery = () => {
     getHero();
   }, []);
 
+  if (!hero)
+    return (
+      <div id="MobileHeroGallery">
+        <div className="slider-item"></div>
+      </div>
+    );
+
   const settings = {
     dots: false,
     infinite: true,

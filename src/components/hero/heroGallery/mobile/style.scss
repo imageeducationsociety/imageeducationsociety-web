@@ -34,6 +34,7 @@
       padding: rem(20);
       border-radius: rem(12);
       overflow: hidden;
+      @include bg_animation;
 
       img {
         position: absolute;

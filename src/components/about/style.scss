@@ -25,6 +25,10 @@
       gap: rem(40);
     }
 
+    @include breakpoint(xlarge) {
+      width: 40%;
+    }
+
     .about-content {
       display: flex;
       flex-direction: column;
@@ -55,6 +59,9 @@
       p {
         line-height: 1.4;
         margin-bottom: rem(12);
+
+        @include breakpoint(large) {
+        }
 
         &:last-child {
           margin-bottom: 0;
@@ -94,6 +101,10 @@
       display: block;
       width: 50%;
       position: relative;
+
+      @include breakpoint(xlarge) {
+        width: 60%;
+      }
 
       img {
         position: absolute;

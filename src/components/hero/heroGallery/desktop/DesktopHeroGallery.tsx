@@ -24,6 +24,13 @@ const DesktopHeroGallery = () => {
     getHero();
   }, []);
 
+  if (!hero)
+    return (
+      <div id="DesktopHeroGallery">
+        <div className="slider-item"></div>
+      </div>
+    );
+
   return (
     <div id="DesktopHeroGallery">
       {hero &&

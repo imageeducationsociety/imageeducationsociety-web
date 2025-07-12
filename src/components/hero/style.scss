@@ -67,4 +67,93 @@
       }
     }
   }
+
+  #MountedHeroGallery {
+    @include full-width;
+
+    @include breakpoint(medium) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: rem(12);
+    }
+
+    @include breakpoint(large) {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(5, 1fr);
+      gap: rem(12);
+      height: rem(600);
+    }
+
+    @include breakpoint(xlarge) {
+      height: rem(650);
+    }
+
+    .slider-item {
+      display: none;
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      padding: rem(20);
+      border-radius: rem(12);
+      overflow: hidden;
+      @include bg_animation;
+
+      &:nth-of-type(1) {
+        display: block;
+      }
+
+      @include breakpoint(medium) {
+        &:nth-of-type(2) {
+          display: block;
+        }
+      }
+
+      @include breakpoint(large) {
+        aspect-ratio: auto;
+
+        &:nth-of-type(3),
+        &:nth-of-type(4),
+        &:nth-of-type(5),
+        &:nth-of-type(6),
+        &:nth-of-type(7) {
+          display: block;
+        }
+        &:nth-child(1) {
+          grid-column: 1 / 2;
+          grid-row: 1 / 4;
+        }
+
+        &:nth-child(2) {
+          grid-column: 1 / 2;
+          grid-row: 4 / 6;
+        }
+
+        &:nth-child(3) {
+          grid-column: 2 / 3;
+          grid-row: 2 / 6;
+        }
+
+        &:nth-child(4) {
+          grid-column: 3 / 4;
+          grid-row: 3 / 6;
+        }
+
+        &:nth-child(5) {
+          grid-column: 4 / 5;
+          grid-row: 2 / 6;
+        }
+
+        &:nth-child(6) {
+          grid-column: 5 / 6;
+          grid-row: 1 / 4;
+        }
+
+        &:nth-child(7) {
+          grid-column: 5 / 6;
+          grid-row: 4 / 6;
+        }
+      }
+    }
+  }
 }

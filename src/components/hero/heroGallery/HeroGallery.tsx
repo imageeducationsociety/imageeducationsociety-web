@@ -7,7 +7,18 @@ import DesktopHeroGallery from "./desktop/DesktopHeroGallery";
 const HeroGallery = () => {
   const { isMounted, isTablet, isMobile } = useResponsive();
 
-  if (!isMounted) return null;
+  if (!isMounted)
+    return (
+      <div id="MountedHeroGallery">
+        <div className="slider-item"></div>
+        <div className="slider-item"></div>
+        <div className="slider-item"></div>
+        <div className="slider-item"></div>
+        <div className="slider-item"></div>
+        <div className="slider-item"></div>
+        <div className="slider-item"></div>
+      </div>
+    );
 
   return (
     <div id="HeroGallery">

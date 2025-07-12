@@ -24,7 +24,7 @@ $e_quart: cubic-bezier(0.76, 0, 0.24, 1);
 
 @mixin bg_animation {
   background-color: $c_dark;
-  background: linear-gradient(90deg, $c_primary, $c_secondary, $c_primary);
+  background: linear-gradient(90deg, $c_light, $c_primary, $c_light);
   background-size: 200%;
   animation: skeleton 1s infinite linear;
 
