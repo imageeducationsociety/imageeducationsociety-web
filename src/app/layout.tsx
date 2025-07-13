@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import "./scss/globals.scss";
+import "./(client)/scss/globals.scss";
+import { domine, roboto } from "./(client)/fonts";
 import { sanityFetch } from "@/sanity/lib/client";
 import { BRAND_QUERY } from "@/sanity/lib/queries";
 import Header from "@/components/header/Header";
@@ -39,18 +40,16 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function ClientLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <ReactLenis root>
-      <ToastProvider>
-        <Header />
-        <main className="main_container">{children}</main>
-        <Footer />
-      </ToastProvider>
-    </ReactLenis>
+    <html lang="en">
+      <body className={`${roboto.variable} ${domine.variable}`}>
+        <main>{children}</main>
+      </body>
+    </html>
   );
 }

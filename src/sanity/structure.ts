@@ -9,6 +9,7 @@ import {
   ListIcon,
   UserIcon,
   EnvelopeIcon,
+  CodeBlockIcon,
 } from "@sanity/icons";
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
 export const structure: StructureResolver = (S) =>
@@ -72,6 +73,14 @@ export const structure: StructureResolver = (S) =>
                     .schemaType("brandDetails")
                     .documentId("brandDetails")
                 ),
+              S.listItem()
+                .title("Maintenance")
+                .icon(CodeBlockIcon)
+                .child(
+                  S.document()
+                    .schemaType("maintenance")
+                    .documentId("maintenance")
+                ),
             ])
         ),
 
@@ -88,6 +97,7 @@ export const structure: StructureResolver = (S) =>
             "services",
             "team",
             "contact",
+            "maintenance",
           ].includes(item.getId()!)
       ),
     ]);

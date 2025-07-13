@@ -194,3 +194,13 @@ export const CONTACT_QUERY = defineQuery(
         office_hours,
     }`
 );
+
+export const MAINTENANCE_QUERY = defineQuery(
+  `*[_type == "maintenance"][0] {
+        _id,
+        _createdAt,
+        title,
+        subtitle,
+        description,
+    }`
+);

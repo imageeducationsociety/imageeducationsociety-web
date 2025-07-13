@@ -13,6 +13,47 @@
  */
 
 // Source: schema.json
+export type Maintenance = {
+  _id: string;
+  _type: "maintenance";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  subtitle?: string;
+  description?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }>;
+};
+
 export type Contact = {
   _id: string;
   _type: "contact";
@@ -409,7 +450,7 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = Contact | Team | Services | ImageGallery | Difference | About | Hero | BrandDetails | BlockContent | Icon | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = Maintenance | Contact | Team | Services | ImageGallery | Difference | About | Hero | BrandDetails | BlockContent | Icon | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: BRAND_QUERY
@@ -632,6 +673,45 @@ export type CONTACT_QUERYResult = {
   email: string | null;
   office_hours: string | null;
 } | null;
+// Variable: MAINTENANCE_QUERY
+// Query: *[_type == "maintenance"][0] {        _id,        _createdAt,        title,        subtitle,        description,    }
+export type MAINTENANCE_QUERYResult = {
+  _id: string;
+  _createdAt: string;
+  title: string | null;
+  subtitle: string | null;
+  description: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }> | null;
+} | null;
 
 // Query TypeMap
 import "@sanity/client";
@@ -646,5 +726,6 @@ declare module "@sanity/client" {
     "*[_type == \"services\"][0] {\n        _id,\n        _createdAt,\n        title,\n        \"services\": services[]{\n            title,\n            description,\n            \"icon\": icon{\n                name,\n            }\n        }\n    }": SERVICES_QUERYResult;
     "*[_type == \"team\"][0] {\n        _id,\n        _createdAt,\n        title,\n        \"team\": team[]{\n            name,\n            designation,\n            \"image\": image{\n                asset->{\n                    _id,\n                    url,\n                    metadata{\n                        lqip,\n                    },\n                },\n                hotspot,\n                crop,\n            }\n        }\n    }": TEAM_QUERYResult;
     "*[_type == \"contact\"][0] {\n        _id,\n        _createdAt,\n        title,\n        description,\n        address,\n        phone,\n        email,\n        office_hours,\n    }": CONTACT_QUERYResult;
+    "*[_type == \"maintenance\"][0] {\n        _id,\n        _createdAt,\n        title,\n        subtitle,\n        description,\n    }": MAINTENANCE_QUERYResult;
   }
 }

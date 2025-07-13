@@ -56,9 +56,6 @@
         line-height: 1.4;
         margin-bottom: rem(12);
 
-        @include breakpoint(large) {
-        }
-
         &:last-child {
           margin-bottom: 0;
         }

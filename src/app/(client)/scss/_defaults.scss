@@ -17,7 +17,7 @@ body {
   overflow-x: clip;
 }
 
-main {
+.main_container {
   margin-top: $header_height_mobile;
   @include breakpoint(medium) {
     margin-top: $header_height_desktop;
