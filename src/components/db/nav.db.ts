@@ -14,17 +14,18 @@ export const menu: MenuItem[] = [
       duration: 1,
     },
   },
-  {
-    title: "Services",
-    href: {
-      id: "Services",
-      duration: 1,
-    },
-  },
+
   {
     title: "Gallery",
     href: {
       id: "Gallery",
+      duration: 1,
+    },
+  },
+  {
+    title: "Services",
+    href: {
+      id: "Services",
       duration: 1,
     },
   },

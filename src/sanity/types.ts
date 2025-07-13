@@ -13,6 +13,21 @@
  */
 
 // Source: schema.json
+export type Services = {
+  _id: string;
+  _type: "services";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  services?: Array<{
+    title?: string;
+    description?: string;
+    icon?: Icon;
+    _key: string;
+  }>;
+};
+
 export type ImageGallery = {
   _id: string;
   _type: "imageGallery";
@@ -155,6 +170,8 @@ export type BrandDetails = {
   _rev: string;
   title?: string;
   description?: string;
+  footer_description?: string;
+  email?: string;
   logo?: {
     logo_mobile?: {
       asset?: {
@@ -180,8 +197,21 @@ export type BrandDetails = {
       crop?: SanityImageCrop;
       _type: "image";
     };
+    logo_light?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
   };
   keywords?: Array<string>;
+  copyright?: string;
 };
 
 export type BlockContent = Array<{
@@ -339,16 +369,19 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = ImageGallery | Difference | About | Hero | BrandDetails | BlockContent | Icon | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = Services | ImageGallery | Difference | About | Hero | BrandDetails | BlockContent | Icon | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: BRAND_QUERY
-// Query: *[_type == "brandDetails"][0] {        _id,        _createdAt,        title,        description,        "logo": logo{            "logo_mobile": logo_mobile{            asset->{                _id,                url,                metadata{                    lqip,                },            },                hotspot,                crop,            },            "logo_desktop": logo_desktop{                asset->{                    _id,                    url,                    metadata{                    lqip,                    }                },                hotspot,                crop,            },        },        keywords,    }
+// Query: *[_type == "brandDetails"][0] {        _id,        _createdAt,        title,        description,        footer_description,        email,        copyright,        "logo": logo{            "logo_mobile": logo_mobile{            asset->{                _id,                url,                metadata{                    lqip,                },            },                hotspot,                crop,            },            "logo_desktop": logo_desktop{                asset->{                    _id,                    url,                    metadata{                    lqip,                    }                },                hotspot,                crop,            },            "logo_light": logo_light{                asset->{                    _id,                    url,                    metadata{                    lqip,                    }                },                hotspot,                crop,            },        },        keywords,    }
 export type BRAND_QUERYResult = {
   _id: string;
   _createdAt: string;
   title: string | null;
   description: string | null;
+  footer_description: string | null;
+  email: string | null;
+  copyright: string | null;
   logo: {
     logo_mobile: {
       asset: {
@@ -362,6 +395,17 @@ export type BRAND_QUERYResult = {
       crop: SanityImageCrop | null;
     } | null;
     logo_desktop: {
+      asset: {
+        _id: string;
+        url: string | null;
+        metadata: {
+          lqip: string | null;
+        } | null;
+      } | null;
+      hotspot: SanityImageHotspot | null;
+      crop: SanityImageCrop | null;
+    } | null;
+    logo_light: {
       asset: {
         _id: string;
         url: string | null;
@@ -500,16 +544,31 @@ export type IMAGE_GALLERY_QUERYResult = {
     crop: SanityImageCrop | null;
   }> | null;
 } | null;
+// Variable: SERVICES_QUERY
+// Query: *[_type == "services"][0] {        _id,        _createdAt,        title,        "services": services[]{            title,            description,            "icon": icon{                name,            }        }    }
+export type SERVICES_QUERYResult = {
+  _id: string;
+  _createdAt: string;
+  title: string | null;
+  services: Array<{
+    title: string | null;
+    description: string | null;
+    icon: {
+      name: string | null;
+    } | null;
+  }> | null;
+} | null;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"brandDetails\"][0] {\n        _id,\n        _createdAt,\n        title,\n        description,\n        \"logo\": logo{\n            \"logo_mobile\": logo_mobile{\n            asset->{\n                _id,\n                url,\n                metadata{\n                    lqip,\n                },\n            },\n                hotspot,\n                crop,\n            },\n            \"logo_desktop\": logo_desktop{\n                asset->{\n                    _id,\n                    url,\n                    metadata{\n                    lqip,\n                    }\n                },\n                hotspot,\n                crop,\n            },\n        },\n        keywords,\n    }": BRAND_QUERYResult;
+    "*[_type == \"brandDetails\"][0] {\n        _id,\n        _createdAt,\n        title,\n        description,\n        footer_description,\n        email,\n        copyright,\n        \"logo\": logo{\n            \"logo_mobile\": logo_mobile{\n            asset->{\n                _id,\n                url,\n                metadata{\n                    lqip,\n                },\n            },\n                hotspot,\n                crop,\n            },\n            \"logo_desktop\": logo_desktop{\n                asset->{\n                    _id,\n                    url,\n                    metadata{\n                    lqip,\n                    }\n                },\n                hotspot,\n                crop,\n            },\n            \"logo_light\": logo_light{\n                asset->{\n                    _id,\n                    url,\n                    metadata{\n                    lqip,\n                    }\n                },\n                hotspot,\n                crop,\n            },\n        },\n        keywords,\n    }": BRAND_QUERYResult;
     "*[_type == \"hero\"][0] {\n        _id,\n        _createdAt,\n        title,\n        subtitle,\n    }": HERO_QUERYResult;
     "*[_type == \"hero\"][0] {\n        _id,\n        _createdAt,\n        gallery[]{\n            \"image\": image{\n                asset->{\n                    _id,\n                    url,\n                    metadata{\n                        lqip,\n                    },\n                },\n                hotspot,\n                crop,\n            },\n            title,\n            subtitle,\n        }\n    }": HERO_GALLERY_QUERYResult;
     "*[_type == \"about\"][0] {\n        _id,\n        _createdAt,\n        title,\n        subtitle,\n        description,\n        matrix,\n        \"image\": image{\n            asset->{\n                _id,\n                url,\n                metadata{\n                    lqip,\n                },\n            },\n            hotspot,\n            crop,\n        },\n    }": ABOUT_QUERYResult;
     "*[_type == \"difference\"][0] {\n        _id,\n        _createdAt,\n        title,\n        subtitle,\n        \"points\": points[]{\n            title,\n            description,\n            \"icon\": icon{\n                asset->{\n                    _id,\n                    url,\n                    metadata{\n                        lqip,\n                    },\n                },\n                hotspot,\n                crop,\n            },\n        },\n    }": DIFFERENCE_QUERYResult;
     "*[_type == \"imageGallery\"][0] {\n        _id,\n        _createdAt,\n        title,\n        \"images\": images[]{\n            asset->{\n                _id,\n                url,\n                metadata{\n                    lqip,\n                },\n            },\n            hotspot,\n            crop,\n        }\n    }": IMAGE_GALLERY_QUERYResult;
+    "*[_type == \"services\"][0] {\n        _id,\n        _createdAt,\n        title,\n        \"services\": services[]{\n            title,\n            description,\n            \"icon\": icon{\n                name,\n            }\n        }\n    }": SERVICES_QUERYResult;
   }
 }

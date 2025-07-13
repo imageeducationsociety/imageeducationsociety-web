@@ -28,6 +28,7 @@
       font-family: $domine;
       font-weight: 500;
       max-width: 80%;
+      font-size: rem(32);
 
       @include breakpoint(medium) {
         font-size: rem(32);

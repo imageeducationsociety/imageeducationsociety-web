@@ -1,6 +1,6 @@
 import "./style.scss";
 import Nav from "./menu/Nav";
-import Logo from "./menu/Logo";
+import Logo from "../logo/Logo";
 import Button from "../ui/buttons/Button";
 import { sanityFetch } from "@/sanity/lib/client";
 import { BRAND_QUERYResult } from "@/sanity/types";

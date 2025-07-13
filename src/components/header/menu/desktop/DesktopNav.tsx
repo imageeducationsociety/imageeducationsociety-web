@@ -1,6 +1,6 @@
 import { useLenisScrollTo } from "@/hooks/useLenisScrollTo";
-import { menu } from "../data.db";
 import "./style.scss";
+import { menu } from "@/components/db/nav.db";
 
 const DesktopNav = () => {
   const scrollTo = useLenisScrollTo();

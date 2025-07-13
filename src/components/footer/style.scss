@@ -1,0 +1,128 @@
+@use "@/app/(client)/scss/abstracts" as *;
+
+#Footer {
+  background-color: $c_primary;
+  color: $c_light;
+  display: flex;
+  flex-direction: column;
+  gap: rem(28);
+
+  @include full_padding_block;
+  @include full_width;
+
+  @include breakpoint(large) {
+    padding-block: rem(48);
+  }
+
+  .footer_top {
+    @include breakpoint(medium) {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: rem(40);
+    }
+
+    .footer_title_container {
+      width: fit-content;
+      display: flex;
+      flex-direction: column;
+      gap: rem(24);
+
+      @include breakpoint(medium) {
+        grid-column: 1 / 4;
+        grid-row: 1 / 3;
+      }
+
+      p {
+        line-height: 1.5;
+
+        @include breakpoint(medium) {
+          max-width: 80%;
+        }
+
+        @include breakpoint(xlarge) {
+          max-width: 60%;
+        }
+      }
+
+      .next_link {
+        position: relative;
+        height: rem(56);
+        min-width: rem(200);
+
+        img {
+          position: absolute;
+          inset: 0;
+          height: 100%;
+          width: 100%;
+          object-fit: contain;
+          object-position: left top;
+        }
+      }
+
+      .email_link {
+        display: flex;
+        align-items: center;
+        gap: rem(8);
+        font-size: rem(14);
+
+        svg {
+          $size: rem(16);
+          width: $size;
+          height: $size;
+        }
+      }
+    }
+
+    .footer_links_container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-flow: column;
+      grid-template-rows: repeat(3, 1fr);
+      place-items: start;
+      gap: rem(8);
+
+      @include breakpoint(medium) {
+        gap: rem(16);
+        height: fit-content;
+        grid-column: 4 / 6;
+        grid-row: 1 / 3;
+      }
+
+      .scroll_link {
+        @include breakpoint(large) {
+          transition: color 0.3s ease-in-out;
+
+          &:hover {
+            color: $c_secondary;
+          }
+        }
+      }
+    }
+  }
+  .footer_copyright_container {
+    border-top: rem(1) solid rgba($c_light, 0.5);
+    padding-top: rem(16);
+
+    display: flex;
+    flex-direction: column;
+    gap: rem(12);
+
+    @include breakpoint(large) {
+      padding-top: rem(24);
+
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    p {
+      display: flex;
+      gap: rem(8);
+      line-height: 1.5;
+    }
+
+    a {
+      text-decoration: underline;
+    }
+  }
+}

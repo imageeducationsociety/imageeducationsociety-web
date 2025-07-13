@@ -6,6 +6,7 @@ import { BRAND_QUERY } from "@/sanity/lib/queries";
 import Header from "@/components/header/Header";
 import { BRAND_QUERYResult } from "@/sanity/types";
 import ReactLenis from "lenis/react";
+import Footer from "@/components/footer/Footer";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -49,6 +50,7 @@ export default function RootLayout({
         <body className={`${roboto.variable} ${domine.variable}`}>
           <Header />
           <main>{children}</main>
+          <Footer />
         </body>
       </ReactLenis>
     </html>

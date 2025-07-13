@@ -14,8 +14,20 @@ export const brandDetailsType = defineType({
     defineField({
       name: "description",
       title: "Brand Description",
-      type: "string",
+      type: "text",
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "footer_description",
+      title: "Footer Description",
+      type: "text",
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "email",
+      title: "Email",
+      type: "string",
+      validation: (Rule) => Rule.required().email(),
     }),
     defineField({
       name: "logo",
@@ -34,6 +46,12 @@ export const brandDetailsType = defineType({
           type: "image",
           validation: (Rule) => Rule.required(),
         }),
+        defineField({
+          name: "logo_light",
+          title: "Logo Light",
+          type: "image",
+          validation: (Rule) => Rule.required(),
+        }),
       ],
     }),
     defineField({
@@ -41,6 +59,12 @@ export const brandDetailsType = defineType({
       title: "Keywords",
       type: "array",
       of: [{ type: "string" }],
+    }),
+    defineField({
+      name: "copyright",
+      title: "Copyright",
+      type: "string",
+      validation: (Rule) => Rule.required(),
     }),
   ],
 });

@@ -6,6 +6,9 @@ export const BRAND_QUERY = defineQuery(
         _createdAt,
         title,
         description,
+        footer_description,
+        email,
+        copyright,
         "logo": logo{
             "logo_mobile": logo_mobile{
             asset->{
@@ -19,6 +22,17 @@ export const BRAND_QUERY = defineQuery(
                 crop,
             },
             "logo_desktop": logo_desktop{
+                asset->{
+                    _id,
+                    url,
+                    metadata{
+                    lqip,
+                    }
+                },
+                hotspot,
+                crop,
+            },
+            "logo_light": logo_light{
                 asset->{
                     _id,
                     url,
@@ -126,6 +140,21 @@ export const IMAGE_GALLERY_QUERY = defineQuery(
             },
             hotspot,
             crop,
+        }
+    }`
+);
+
+export const SERVICES_QUERY = defineQuery(
+  `*[_type == "services"][0] {
+        _id,
+        _createdAt,
+        title,
+        "services": services[]{
+            title,
+            description,
+            "icon": icon{
+                name,
+            }
         }
     }`
 );

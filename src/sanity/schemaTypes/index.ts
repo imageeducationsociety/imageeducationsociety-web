@@ -5,6 +5,7 @@ import { blockContentType } from "./blockContentType";
 import { differenceType } from "./differenceTypes";
 import { brandDetailsType } from "./brandDetailsType";
 import { imageGalleryType } from "./imageGalleryTypes";
+import { servicesType } from "./servicesTypes";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -14,5 +15,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     aboutType,
     differenceType,
     imageGalleryType,
+    servicesType,
   ],
 };

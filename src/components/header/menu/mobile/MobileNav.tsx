@@ -3,10 +3,10 @@
 import "./style.scss";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { menu } from "../data.db";
 import { useLenisScrollTo } from "@/hooks/useLenisScrollTo";
 import { motion, AnimatePresence } from "motion/react";
 import { useLenis } from "lenis/react";
+import { menu } from "@/components/db/nav.db";
 
 const MobileNav = () => {
   const [isOpen, setIsOpen] = useState(false);
