@@ -1,0 +1,105 @@
+@use "@/app/(client)/scss/abstracts" as *;
+
+.team_carousel {
+  @include full_padding_inline;
+
+  .slider-container {
+    border-radius: rem(12);
+    overflow: hidden;
+
+    .slick-slide {
+      padding: 0 rem(8);
+    }
+    .slick-arrow {
+      $size: rem(28);
+      z-index: 10;
+      width: $size;
+      height: $size;
+
+      &::before {
+        font-size: $size;
+      }
+    }
+    .slick-prev {
+      left: rem(16);
+    }
+    .slick-next {
+      right: rem(16);
+    }
+
+    .slider-item {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      padding: rem(20);
+      border-radius: rem(12);
+      overflow: hidden;
+      @include bg_animation;
+
+      img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        z-index: 1;
+      }
+
+      .content {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        z-index: 3;
+        color: $c_light;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        gap: rem(12);
+
+        h3 {
+          font-family: $domine;
+          font-size: rem(20);
+          font-weight: 600;
+        }
+
+        p {
+          font-size: rem(12);
+          background-color: $c_secondary;
+          width: fit-content;
+          padding: rem(8) rem(12);
+          border-radius: rem(100);
+          font-weight: 600;
+        }
+      }
+    }
+
+    .img_bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(
+        to right,
+        rgba($c_dark, 0.25),
+        rgba($c_dark, 0),
+        rgba($c_dark, 0.25)
+      );
+      z-index: 2;
+    }
+
+    .img_bg_secondary {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(
+        to top,
+        rgba($c_dark, 0.75),
+        rgba($c_dark, 0) 40%
+      );
+      z-index: 2;
+    }
+  }
+}

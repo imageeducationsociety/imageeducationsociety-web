@@ -7,6 +7,7 @@ import Header from "@/components/header/Header";
 import { BRAND_QUERYResult } from "@/sanity/types";
 import ReactLenis from "lenis/react";
 import Footer from "@/components/footer/Footer";
+import { ToastProvider } from "@/context/toastContext";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -48,9 +49,11 @@ export default function RootLayout({
     <html lang="en">
       <ReactLenis root>
         <body className={`${roboto.variable} ${domine.variable}`}>
-          <Header />
-          <main>{children}</main>
-          <Footer />
+          <ToastProvider>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </ToastProvider>
         </body>
       </ReactLenis>
     </html>

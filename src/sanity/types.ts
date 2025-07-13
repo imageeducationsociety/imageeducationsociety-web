@@ -13,6 +13,46 @@
  */
 
 // Source: schema.json
+export type Contact = {
+  _id: string;
+  _type: "contact";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  description?: string;
+  address?: string;
+  phone?: string;
+  email?: string;
+  office_hours?: string;
+};
+
+export type Team = {
+  _id: string;
+  _type: "team";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  team?: Array<{
+    name?: string;
+    designation?: string;
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    _key: string;
+  }>;
+};
+
 export type Services = {
   _id: string;
   _type: "services";
@@ -369,7 +409,7 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = Services | ImageGallery | Difference | About | Hero | BrandDetails | BlockContent | Icon | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = Contact | Team | Services | ImageGallery | Difference | About | Hero | BrandDetails | BlockContent | Icon | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: BRAND_QUERY
@@ -558,6 +598,40 @@ export type SERVICES_QUERYResult = {
     } | null;
   }> | null;
 } | null;
+// Variable: TEAM_QUERY
+// Query: *[_type == "team"][0] {        _id,        _createdAt,        title,        "team": team[]{            name,            designation,            "image": image{                asset->{                    _id,                    url,                    metadata{                        lqip,                    },                },                hotspot,                crop,            }        }    }
+export type TEAM_QUERYResult = {
+  _id: string;
+  _createdAt: string;
+  title: string | null;
+  team: Array<{
+    name: string | null;
+    designation: string | null;
+    image: {
+      asset: {
+        _id: string;
+        url: string | null;
+        metadata: {
+          lqip: string | null;
+        } | null;
+      } | null;
+      hotspot: SanityImageHotspot | null;
+      crop: SanityImageCrop | null;
+    } | null;
+  }> | null;
+} | null;
+// Variable: CONTACT_QUERY
+// Query: *[_type == "contact"][0] {        _id,        _createdAt,        title,        description,        address,        phone,        email,        office_hours,    }
+export type CONTACT_QUERYResult = {
+  _id: string;
+  _createdAt: string;
+  title: string | null;
+  description: string | null;
+  address: string | null;
+  phone: string | null;
+  email: string | null;
+  office_hours: string | null;
+} | null;
 
 // Query TypeMap
 import "@sanity/client";
@@ -570,5 +644,7 @@ declare module "@sanity/client" {
     "*[_type == \"difference\"][0] {\n        _id,\n        _createdAt,\n        title,\n        subtitle,\n        \"points\": points[]{\n            title,\n            description,\n            \"icon\": icon{\n                asset->{\n                    _id,\n                    url,\n                    metadata{\n                        lqip,\n                    },\n                },\n                hotspot,\n                crop,\n            },\n        },\n    }": DIFFERENCE_QUERYResult;
     "*[_type == \"imageGallery\"][0] {\n        _id,\n        _createdAt,\n        title,\n        \"images\": images[]{\n            asset->{\n                _id,\n                url,\n                metadata{\n                    lqip,\n                },\n            },\n            hotspot,\n            crop,\n        }\n    }": IMAGE_GALLERY_QUERYResult;
     "*[_type == \"services\"][0] {\n        _id,\n        _createdAt,\n        title,\n        \"services\": services[]{\n            title,\n            description,\n            \"icon\": icon{\n                name,\n            }\n        }\n    }": SERVICES_QUERYResult;
+    "*[_type == \"team\"][0] {\n        _id,\n        _createdAt,\n        title,\n        \"team\": team[]{\n            name,\n            designation,\n            \"image\": image{\n                asset->{\n                    _id,\n                    url,\n                    metadata{\n                        lqip,\n                    },\n                },\n                hotspot,\n                crop,\n            }\n        }\n    }": TEAM_QUERYResult;
+    "*[_type == \"contact\"][0] {\n        _id,\n        _createdAt,\n        title,\n        description,\n        address,\n        phone,\n        email,\n        office_hours,\n    }": CONTACT_QUERYResult;
   }
 }

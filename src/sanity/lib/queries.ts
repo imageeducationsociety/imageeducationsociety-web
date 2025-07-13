@@ -158,3 +158,39 @@ export const SERVICES_QUERY = defineQuery(
         }
     }`
 );
+
+export const TEAM_QUERY = defineQuery(
+  `*[_type == "team"][0] {
+        _id,
+        _createdAt,
+        title,
+        "team": team[]{
+            name,
+            designation,
+            "image": image{
+                asset->{
+                    _id,
+                    url,
+                    metadata{
+                        lqip,
+                    },
+                },
+                hotspot,
+                crop,
+            }
+        }
+    }`
+);
+
+export const CONTACT_QUERY = defineQuery(
+  `*[_type == "contact"][0] {
+        _id,
+        _createdAt,
+        title,
+        description,
+        address,
+        phone,
+        email,
+        office_hours,
+    }`
+);

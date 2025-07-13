@@ -7,6 +7,8 @@ import {
   BulbOutlineIcon,
   ImageIcon,
   ListIcon,
+  UserIcon,
+  EnvelopeIcon,
 } from "@sanity/icons";
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
 export const structure: StructureResolver = (S) =>
@@ -41,6 +43,16 @@ export const structure: StructureResolver = (S) =>
         .icon(ListIcon)
         .child(S.document().schemaType("services").documentId("services")),
 
+      S.listItem()
+        .title("Team")
+        .icon(UserIcon)
+        .child(S.document().schemaType("team").documentId("team")),
+
+      S.listItem()
+        .title("Contact")
+        .icon(EnvelopeIcon)
+        .child(S.document().schemaType("contact").documentId("contact")),
+
       // Divider for visual grouping
       S.divider(),
 
@@ -74,6 +86,8 @@ export const structure: StructureResolver = (S) =>
             "difference",
             "imageGallery",
             "services",
+            "team",
+            "contact",
           ].includes(item.getId()!)
       ),
     ]);

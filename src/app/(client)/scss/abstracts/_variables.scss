@@ -13,8 +13,10 @@ $c_light: #f7f7f7;
 $c_dark: #111111;
 $c_primary: #2c2cff;
 $c_secondary: #c93900;
+$c_yellow: #ffc107;
+$c_success: #458169;
 
-$b-radius: rem(20);
+$b-radius: rem(12);
 
 //*----> easing
 
@@ -56,9 +58,11 @@ $header_height_desktop: 100px;
 //*----> full_width
 
 @mixin full_width {
-  width: 100vw;
-  max-width: 100%;
-  padding-inline: 4vw;
+  & {
+    width: 100vw;
+    max-width: 100%;
+    padding-inline: 4vw;
+  }
 
   @include breakpoint(medium) {
     padding-inline: 8vw;

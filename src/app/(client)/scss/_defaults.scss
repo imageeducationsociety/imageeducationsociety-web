@@ -68,6 +68,16 @@ button {
   cursor: pointer;
 }
 
+input,
+textarea {
+  background: transparent;
+  outline: none;
+  border-radius: rem(12);
+  border: rem(1) solid rgba($c_light, 0.75);
+  resize: none;
+  padding: rem(10) rem(16);
+}
+
 /* 
 fill
 sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"

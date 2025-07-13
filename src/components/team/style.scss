@@ -1,0 +1,34 @@
+@use "@/app/(client)/scss/abstracts" as *;
+
+#Team {
+  display: flex;
+  flex-direction: column;
+  gap: rem(24);
+  @include full_padding_block;
+
+  @include breakpoint(medium) {
+    gap: rem(32);
+  }
+
+  @include breakpoint(large) {
+    gap: rem(32);
+  }
+
+  @include breakpoint(xlarge) {
+    gap: rem(40);
+  }
+
+  .title_container {
+    @include full-width;
+
+    h2 {
+      font-family: $domine;
+      font-size: rem(24);
+      text-align: center;
+
+      @include breakpoint(large) {
+        font-size: rem(40);
+      }
+    }
+  }
+}
