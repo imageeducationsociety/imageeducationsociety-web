@@ -15,13 +15,14 @@ export default function Home() {
 
   return (
     <>
-      <Hero />
+      {/*  <Hero />
       <About />
       <Difference />
       <Gallery />
       <Services />
       <Team />
-      <Contact />
+      <Contact /> */}
+      <Maintenance />
     </>
   );
 }
