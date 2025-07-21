@@ -1,0 +1,93 @@
+@use "@/app/(client)/scss/abstracts" as *;
+
+#NotFound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  height: 100dvh;
+  position: relative;
+  @include full_width;
+
+  h1 {
+    font-family: $domine;
+    font-size: rem(140);
+
+    @include breakpoint(large) {
+      font-size: rem(240);
+    }
+
+    @include breakpoint(xlarge) {
+      font-size: rem(300);
+    }
+
+    @include breakpoint(xxlarge) {
+      font-size: rem(400);
+    }
+  }
+
+  .bottom_container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    bottom: 18vh;
+    text-transform: uppercase;
+    font-size: rem(12);
+    font-weight: 700;
+    gap: rem(2);
+
+    @include breakpoint(large) {
+      bottom: 20vh;
+      font-size: rem(14);
+    }
+
+    @include breakpoint(xxlarge) {
+      bottom: 30vh;
+      font-size: rem(50);
+    }
+
+    h2 {
+      font-size: rem(22);
+    }
+
+    p {
+      @include breakpoint(xxlarge) {
+        font-size: rem(22);
+      }
+    }
+
+    a {
+      font-size: rem(14);
+      margin-top: rem(10);
+      border: rem(1) solid $c_dark;
+      padding: rem(10) rem(20);
+      border-radius: rem(100);
+
+      @include breakpoint(large) {
+        padding: rem(12) rem(20) !important;
+        font-size: rem(12) !important;
+        transition:
+          background 0.3s ease-in-out,
+          color 0.2s ease-in-out;
+
+        &:hover {
+          background-color: $c_primary;
+          color: $c_light;
+        }
+      }
+
+      @include breakpoint(xlarge) {
+        font-size: rem(18);
+        padding: rem(16) rem(30);
+      }
+
+      @include breakpoint(xxlarge) {
+        margin-top: rem(30);
+        font-size: rem(24);
+        padding: rem(20) rem(40);
+      }
+    }
+  }
+}

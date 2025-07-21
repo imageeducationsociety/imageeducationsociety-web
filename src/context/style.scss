@@ -1,0 +1,51 @@
+@use "@/app/(client)/scss/abstracts" as *;
+
+.toast-container {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  padding-top: rem(10);
+  display: flex;
+  flex-direction: column;
+  gap: rem(10);
+  height: fit-content;
+  @include full-width;
+}
+
+.toast {
+  width: 100%;
+  padding: rem(14) rem(18);
+  border-radius: $b-radius;
+  color: $c_light;
+  line-height: 1.4;
+  display: flex;
+  gap: rem(10);
+  justify-content: space-between;
+  align-items: center;
+
+  @include breakpoint(medium) {
+    width: 50%;
+    align-self: flex-end;
+  }
+
+  @include breakpoint(large) {
+    width: 30%;
+  }
+}
+
+.toast-success {
+  background-color: $c_success;
+}
+
+.toast-error {
+  background-color: $c_secondary;
+}
+
+.toast-info {
+  background-color: $c_yellow;
+  color: $c_dark;
+
+  button {
+    color: $c_dark;
+  }
+}

@@ -1,0 +1,16 @@
+@use "@/app/(client)/scss/abstracts" as *;
+
+#Button.scroll_button {
+  background-color: $c_dark;
+  color: $c_light;
+  padding: rem(10) rem(20);
+  border-radius: rem(10);
+
+  @include breakpoint(large) {
+    transition: background-color 0.25s ease-in-out;
+
+    &:hover {
+      background-color: $c_primary;
+    }
+  }
+}

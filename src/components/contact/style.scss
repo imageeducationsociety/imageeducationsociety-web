@@ -1,0 +1,131 @@
+@use "@/app/(client)/scss/abstracts" as *;
+
+#Contact {
+  @include full_padding_block;
+  @include full-width;
+
+  .contact-container {
+    padding: rem(40) rem(30);
+    border-radius: rem(20);
+    background-color: $c_primary;
+    color: $c_light;
+    display: flex;
+    flex-direction: column;
+    gap: rem(40);
+
+    @include breakpoint(medium) {
+      flex-direction: row;
+    }
+
+    @include breakpoint(large) {
+      padding: rem(60) rem(40);
+      gap: rem(140);
+    }
+
+    @include breakpoint(xlarge) {
+      gap: rem(280);
+      padding-inline: rem(80);
+    }
+
+    .title_container {
+      display: flex;
+      flex-direction: column;
+      gap: rem(32);
+      justify-content: space-between;
+
+      @include breakpoint(medium) {
+        width: 50%;
+      }
+
+      .title_main {
+        display: flex;
+        flex-direction: column;
+        gap: rem(10);
+
+        h2 {
+          font-family: $domine;
+          font-size: rem(24);
+
+          @include breakpoint(large) {
+            font-size: rem(32);
+          }
+
+          @include breakpoint(xlarge) {
+            font-size: rem(40);
+          }
+        }
+
+        p {
+          line-height: 1.4;
+        }
+      }
+
+      .title_secondary {
+        display: flex;
+        flex-direction: column;
+        gap: rem(12);
+
+        @include breakpoint(large) {
+          max-width: 80%;
+        }
+
+        /* @include breakpoint(xlarge) {
+          max-width: 50%;
+        } */
+
+        a,
+        p {
+          display: flex;
+          gap: rem(10);
+          font-size: rem(14);
+          line-height: 1.5;
+
+          svg {
+            $size: rem(16);
+            width: $size;
+            height: $size;
+            flex-shrink: 0;
+            margin-top: rem(2);
+          }
+        }
+
+        .office_hours {
+          display: block;
+        }
+      }
+    }
+
+    .contact-form {
+      width: 100%;
+
+      @include breakpoint(medium) {
+        width: 50%;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: rem(12);
+
+        span.error {
+          color: $c_yellow;
+          font-size: rem(14);
+        }
+        button[type="submit"] {
+          background-color: $c_dark;
+          padding: rem(10) rem(16);
+          border-radius: $b-radius;
+          transition:
+            background-color 0.3s ease-in-out,
+            color 0.3s ease-in-out;
+
+          &:disabled {
+            cursor: not-allowed;
+            background-color: $c_yellow;
+            color: $c_dark;
+          }
+        }
+      }
+    }
+  }
+}

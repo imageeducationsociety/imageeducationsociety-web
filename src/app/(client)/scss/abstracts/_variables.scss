@@ -1,0 +1,134 @@
+@use "./functions" as *;
+
+//*----> variables
+
+//*----> fonts
+
+$roboto: var(--font-roboto), sans-serif;
+$domine: var(--font-domine), serif;
+
+//*----> colors
+
+$c_light: #f7f7f7;
+$c_dark: #111111;
+$c_primary: #2c2cff;
+$c_secondary: #c93900;
+$c_yellow: #ffc107;
+$c_success: #458169;
+
+$b-radius: rem(12);
+
+//*----> easing
+
+$e_quart: cubic-bezier(0.76, 0, 0.24, 1);
+
+//*----> background animation
+
+@mixin bg_animation {
+  background-color: $c_dark;
+  background: linear-gradient(90deg, $c_light, $c_primary, $c_light);
+  background-size: 200%;
+  animation: skeleton 1s infinite linear;
+
+  @keyframes skeleton {
+    from {
+      background-position: -100% 0;
+    }
+    to {
+      background-position: 100% 0;
+    }
+  }
+}
+
+//*----> heights
+
+$header_height_mobile: 60px;
+$header_height_desktop: 100px;
+
+@mixin header_height {
+  & {
+    height: $header_height_mobile;
+  }
+
+  @include breakpoint(medium) {
+    height: $header_height_desktop;
+  }
+}
+
+//*----> full_width
+
+@mixin full_width {
+  & {
+    width: 100vw;
+    max-width: 100%;
+    padding-inline: 4vw;
+  }
+
+  @include breakpoint(medium) {
+    padding-inline: 8vw;
+  }
+
+  @include breakpoint(xlarge) {
+    padding-inline: 12vw;
+  }
+
+  @include breakpoint(xxlarge) {
+    padding-inline: 20vw;
+  }
+}
+
+@mixin left_padding {
+  padding-left: 4vw;
+
+  @include breakpoint(medium) {
+    padding-left: 8vw;
+  }
+
+  @include breakpoint(xlarge) {
+    padding-left: 12vw;
+  }
+
+  @include breakpoint(xxlarge) {
+    padding-left: 20vw;
+  }
+}
+
+@mixin full_padding_inline {
+  padding-inline: 4vw;
+
+  @include breakpoint(medium) {
+    padding-inline: 8vw;
+  }
+
+  @include breakpoint(large) {
+    padding-inline: 13vw;
+  }
+
+  @include breakpoint(xxlarge) {
+    padding-inline: 20vw;
+  }
+}
+
+@mixin full_padding_block {
+  & {
+    padding-block: rem(30);
+  }
+
+  @include breakpoint(xlarge) {
+    padding-block: rem(60);
+  }
+}
+
+/*
+//*---------->> Tablet
+
+@media screen and (min-width: 820px){
+
+}
+
+//*---------->> desktop
+
+@media screen and (min-width: 1025px){
+
+}
+ */

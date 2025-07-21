@@ -1,0 +1,34 @@
+@use "@/app/(client)/scss/abstracts" as *;
+
+#Maintenance {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: rem(20);
+  height: calc(100vh - $header_height_mobile);
+  @include full_width;
+  @include full_padding_block;
+
+  @include breakpoint(medium) {
+    height: calc(80vh - $header_height_desktop);
+  }
+
+  @include breakpoint(large) {
+    height: calc(100vh - $header_height_desktop);
+  }
+
+  h2 {
+    font-family: $domine;
+    font-size: rem(40);
+    font-weight: 700;
+  }
+
+  p {
+    line-height: 1.4;
+    margin-bottom: rem(12);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

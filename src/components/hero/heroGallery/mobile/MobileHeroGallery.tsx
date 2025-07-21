@@ -1,0 +1,86 @@
+"use client";
+
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { HERO_GALLERY_QUERY } from "@/sanity/lib/queries";
+import { client } from "@/sanity/lib/client";
+import { HERO_GALLERY_QUERYResult } from "@/sanity/types";
+import OptImage from "@/components/commmon/OptImage";
+import { useEffect, useState } from "react";
+import "./style.scss";
+
+const MobileHeroGallery = () => {
+  const [hero, setHero] = useState<HERO_GALLERY_QUERYResult | null>(null);
+
+  const getHero = async () => {
+    try {
+      const data =
+        await client.fetch<HERO_GALLERY_QUERYResult>(HERO_GALLERY_QUERY);
+      setHero(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getHero();
+  }, []);
+
+  if (!hero)
+    return (
+      <div id="MobileHeroGallery">
+        <div className="slider-item"></div>
+      </div>
+    );
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+  return (
+    <div id="MobileHeroGallery">
+      <div className="slider-container">
+        <Slider {...settings}>
+          {hero &&
+            hero.gallery &&
+            hero.gallery.map((item) => (
+              <div className="slider-item" key={item.title}>
+                {item.image && item.title && (
+                  <OptImage image={item.image} alt={item.title} sizes="card" />
+                )}
+                <div className="img_bg" />
+                <div className="content">
+                  <h2>{item.title}</h2>
+                  <p>{item.subtitle}</p>
+                </div>
+              </div>
+            ))}
+        </Slider>
+      </div>
+    </div>
+  );
+};
+
+export default MobileHeroGallery;
